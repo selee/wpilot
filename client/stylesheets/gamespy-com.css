@@ -108,3 +108,23 @@ section#voice-widget {
 {
 	background-color:#fff;
 }
+
+.gs-call-header
+{
+	font-size:14px;
+	font-weight:bold;
+  background: url(/images/bar.png) center center no-repeat;
+	width:197px;
+	height:29px;
+	color:#FFF;
+	text-align:center;
+}
+
+.gs-call-text
+{
+	position:absolute;
+	top:50%;
+	vertical-align:middle;
+	margin-top:-18px;
+	width:100%;
+}
