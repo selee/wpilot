@@ -124,6 +124,12 @@ const CLIENT_DATA = [
   'client/wpilot.js', '',
   'client/devices.js', '',
   'lib/gameobjects.js', '',
+	'client/gamespy.js', '',
+	'client/images/bar.png', 'images/',
+	'client/images/button-mouseover.png', 'images/',
+	'client/images/button.png', 'images/',
+	'client/images/gs-bar.png', 'images/',
+
   'lib/match.js', 'lib/',
   'client/sound/background.m4a', 'sound/',
   'client/sound/ship_spawn.m4a','sound/',

@@ -12,55 +12,7 @@
 		<script type="text/javascript" src="devices.js"></script>
 		<script type="text/javascript" src="gameobjects.js"></script>
 		<script type="text/javascript" src="wpilot.js"></script>
-
-	<script type="text/javascript">
-
-		var keys = {};
-		var widgetShown = false;
-		var widgetTimeout = false;
-
-		$(document).ready(function() {
-			$("#voice-widget-body").hide();
-			$(document).keydown(function(){
-				keys[event.which] = true;
-				//$("#voice-widget").text("button pressed is " + event.which);
-
-				if(keys[17] && keys[86])
-				{
-					//alert("ctrl+V!");
-					if(!widgetTimeout)
-					{
-						if(widgetShown)
-						{
-							$("#voice-widget-body").slideUp();
-							widgetShown = false;
-							$("#voice-widget-header").text(
-								"Press Ctrl+V to show the box."
-							);
-						}
-						else
-						{
-							$("#voice-widget-body").slideDown();
-							widgetShown = true;
-							$("#voice-widget-header").text(
-								"Press Ctrl+V to hide the box."
-							);
-						}
-						widgetTimeout = true;
-					}
-				}
-			});
-
-			$(document).keyup(function(){
-				keys[event.which] = false;
-				if(!keys[86])
-				{
-					widgetTimeout = false;
-				}
-			});
-	 });
-
-	</script>
+		<script type="text/javascript" src="gamespy.js"></script>
 
 		<script>
 			// The globallly defined wpilot client. It's global so that the player can
@@ -237,14 +189,30 @@
 		</section>
 		<section id="voice-widget">
 			<div id="voice-widget-header">
-				Press Ctrl+V to show the box.
 			</div>
 			<div id="voice-widget-body">
 				<div id="voice-widget-users">
-					This is where the names of users will go.
+					<div class="user-name gs-unselected" id="user-name-Zxc">
+						<div class="user-name-text">
+							Zxc
+						</div>
 					</div>
-				<div id="voice-widget-footer">
-					This is the footer.
+					<div class="user-name gs-unselected" id="user-name-AzHP">
+						<div class="user-name-text">
+							AzHP
+							</div>
+					</div>
+					<div class="user-name gs-unselected" id="user-name-BlueBerryP13">
+						<div class="user-name-text">
+							BlueBerryP13
+						</div>
+					</div>
+
+				</div>
+				<div id="talk-button-container" class="gs-button-container">
+					<div class="gs-button" id="talk-button">
+						Talk
+					</div>
 				</div>
 			</div>
 		</section>
