@@ -88,7 +88,8 @@ const SWITCHES = [
 const DEFAULT_OPTIONS = {
   debug:                true,
   name:                 'WPilot Server',
-  host:                 '127.0.0.1',
+//  host:                 '127.0.0.1',
+  host:                 'ec2-174-129-55-249.compute-1.amazonaws.com',
   region:               'n/a',
   admin_password:       null,
   map:                  null,
@@ -124,7 +125,7 @@ const CLIENT_DATA = [
   'client/wpilot.js', '',
   'client/devices.js', '',
   'lib/gameobjects.js', '',
-	'client/javascript/gamespy-com.js', 'javascript/',
+//	'client/gamespy-com.js', 'javascript/',
 	'client/stylesheets/gamespy-com.css', 'stylesheets/',
 	'client/html/gamespy-com.html', 'html/',
 	'client/images/bar.png', 'images/',
