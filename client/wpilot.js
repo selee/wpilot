@@ -740,18 +740,20 @@ var process_control_message = match (
     client.log('World data loaded...');
     client.set_world(world);
     client.set_state(CLIENT_CONNECTED);
-		
-		var voice = new GameSpy.Voice();
-		for(var player in this.players)
-		{
-			if(!player.is_me)
-				voice.addUser(player.name);
-		}
   },
 
   [[OP_WORLD_STATE, Number, Object, Array, Array], _],
   function(my_id, state, players, powerups, client) {
     client.world.set_state(state, players, powerups);
+
+		// Add existing players to chat
+		var voice = new GameSpy.Voice();
+		for(var a in client.world.players) 
+		{
+			if(!client.world.players[a].is_me)
+				voice.addUser(client.world.players[a].name);
+		}
+
     client.set_player(client.world.players[my_id]);
     client.start_gameloop(client.world.tick);
   },
