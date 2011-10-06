@@ -256,6 +256,7 @@ function start_gameserver(maps, options, shared) {
   // Listen for events on player
   world.on_player_join = function(player) {
     player.name = get_unique_name(world.players, player.id, player.name);
+
     broadcast_each(
       [OP_PLAYER_CONNECT, player.id, player.name],
       function(msg, conn) {

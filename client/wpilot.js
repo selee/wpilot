@@ -43,18 +43,12 @@ var PLAYER_COLORS = {
 
 // Player names
 var PLAYER_NAMES = [
-  'Boba Fett',
-  'Han Solo',
-  'Luke Skywalker',
-  'Princess Leia',
   'R2-D2',
   'C-3PO',
   'Chewbacca',
-  'Darth Vader',
   'Lando',
   'Yoda',
   'Teboo',
-  'Admiral Ackbar'
 ];
 
 // Font variations
@@ -385,6 +379,10 @@ WPilotClient.prototype.set_player = function(player) {
   if (player) {
     player.is_me = true;
     this.log('You are now known as "' + player.name  + '"...');
+
+		// Add the player to the chat window
+		var voice = new GameSpy.Voice();
+		voice.setThisUser(player.name);
   }
   this.player = player;
   this.gui.hud.me = player;
@@ -742,6 +740,13 @@ var process_control_message = match (
     client.log('World data loaded...');
     client.set_world(world);
     client.set_state(CLIENT_CONNECTED);
+		
+		var voice = new GameSpy.Voice();
+		for(var player in this.players)
+		{
+			if(!player.is_me)
+				voice.addUser(player.name);
+		}
   },
 
   [[OP_WORLD_STATE, Number, Object, Array, Array], _],
@@ -884,6 +889,14 @@ World.prototype.on_before_init = function() {
   this.animations = [];
   this.ranked_player_list = [];
   this.winner_names = null;
+	
+	var voice = new GameSpy.Voice();
+	for(var player in this.players)
+	{
+		if(!player.is_me)
+			voice.addUser(player.name);
+	}
+		
 }
 
 /**
@@ -910,6 +923,10 @@ World.prototype.on_after_state_set = function() {
  * Callback for player join
  */
 World.prototype.on_player_join = function(player) {
+	// Adding user to GameSpy
+	var voice = new GameSpy.Voice();
+	voice.addUser(player.name);
+
   this.client.log('Player "' + player.name + '" joined the world...');
 
   this.ranked_player_list = calculate_ranks(this);
@@ -919,6 +936,10 @@ World.prototype.on_player_join = function(player) {
  * Callback for player leave
  */
 World.prototype.on_player_leave = function(player, reason) {
+	// Remove a player to the voice chat
+	var voice = new GameSpy.Voice();
+	voice.removeUser(player.name);
+
   this.client.log('Player "' + player.name + '" disconnected. Reason: ' + reason);
 
   this.ranked_player_list = calculate_ranks(this);
