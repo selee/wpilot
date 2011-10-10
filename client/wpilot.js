@@ -376,6 +376,10 @@ WPilotClient.prototype.set_sound = function(device) {
  *  @return {undefined} Nothing
  */
 WPilotClient.prototype.set_player = function(player) {
+  this.player = player;
+  this.gui.hud.me = player;
+  this.gui.scoreboard.me = player;
+  this.gui.warmupnotice.me = player;
   if (player) {
     player.is_me = true;
     this.log('You are now known as "' + player.name  + '"...');
@@ -384,10 +388,6 @@ WPilotClient.prototype.set_player = function(player) {
 		var voice = new GameSpy.Voice();
 		voice.setThisUser(player.name);
   }
-  this.player = player;
-  this.gui.hud.me = player;
-  this.gui.scoreboard.me = player;
-  this.gui.warmupnotice.me = player;
 }
 
 WPilotClient.prototype.set_server_state = function(state) {
